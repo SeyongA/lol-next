@@ -1,0 +1,31 @@
+{
+  "name": "next-study",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.4.0",
+    "@reduxjs/toolkit": "^2.2.7",
+    "antd": "^5.20.3",
+    "formik": "^2.4.6",
+    "next": "13.2.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "redux": "^5.0.1",
+    "style-components": "^0.1.0",
+    "styled-components": "^6.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.7",
+    "typescript": "^5"
+  }
+}
