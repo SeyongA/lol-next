@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router';
 import { HeaderStyled } from './styled';
 
+
 const Header = () => {
   const router = useRouter();
   const path = router.asPath;
-
-  //router 함수 재정의
 
   return (
     <HeaderStyled>
