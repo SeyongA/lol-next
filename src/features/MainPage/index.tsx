@@ -1,5 +1,14 @@
+import Main from "@/components/Main";
+import Search from "@/components/Search";
+
 const MainPage = () => {
-  return <div>MainPage</div>;
+
+  return (
+    <>
+      <Search></Search>
+      <Main></Main>
+    </>
+  );
 };
 
 export default MainPage;
