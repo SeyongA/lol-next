@@ -18,7 +18,8 @@
     "react-dom": "^18",
     "redux": "^5.0.1",
     "style-components": "^0.1.0",
-    "styled-components": "^6.1.12"
+    "styled-components": "^6.1.12",
+    "swiper": "^11.1.12"
   },
   "devDependencies": {
     "@types/node": "^20",
