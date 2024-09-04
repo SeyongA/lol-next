@@ -10,7 +10,6 @@ export const HeaderStyled = styled.div`
     height: 64px;
     padding: 10px;
     z-index: 1111111;
-
     background-color: #0b1463;
     position: fixed;
     top: 0;
