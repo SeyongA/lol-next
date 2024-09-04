@@ -9,6 +9,9 @@ const Search = () => {
 
   const router = useRouter();
 
+  const path = router.asPath
+  console.log(path);
+  
   useEffect(() => {
     const cleanedName = data.split(' ').join('');
     const [a, b] = cleanedName.split('#');
@@ -21,7 +24,7 @@ const Search = () => {
   return (
     <>
       <SearchStyled>
-        <div className="inputDiv">
+        <div className={` ${path === "/" ? "inputDiv" : "smallDiv"}`}>
           <form
             onSubmit={(e: any) => {
               e.preventDefault();
