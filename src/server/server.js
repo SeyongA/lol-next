@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
-
 const app = express();
 
 app.use(cors());
@@ -24,8 +23,6 @@ app.get('/past5Games', async (req, res) => {
   // 유저 정보 검색( PUUID 얻기 위함)
   const APUUID = await getPlayerPUUID(playerName, playerTag);
   const PUUID = APUUID.puuid;
-  console.log('===================================');
-  console.log(',,.............................', APUUID);
 
   const API_CALL = `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${PUUID}/ids?api_key=${api_key}`;
   // 유저의 최근 20경기 ID 받는 코드
@@ -47,7 +44,21 @@ app.get('/past5Games', async (req, res) => {
     .get(API_TIER)
     .then((res) => res.data)
     .catch((err) => err);
-  res.json({ return: true, userLev, userTier, APUUID });
+
+  const urlChamp = `https://ddragon.leagueoflegends.com/cdn/14.17.1/data/ko_KR/champion.json`;
+  //챔피언 정보 받아오기
+  const champion = await axios
+    .get(urlChamp)
+    .then((response) => response.data)
+    .catch((err) => err);
+
+  const urlMost = `https://kr.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/${PUUID}?api_key=${api_key}`;
+  const MostChampId = await axios
+    .get(urlMost)
+    .then((response) => response.data[0].championId)
+    .catch((err) => err);
+
+  res.json({ return: true, userLev, userTier, APUUID, champion, MostChampId });
 });
 
 app.listen(4000, function () {
