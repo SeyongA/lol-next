@@ -16,6 +16,9 @@ export const SearchStyled = styled.div`
       padding-left: 30px;
       font-size: 20px;
     }
+    button{
+      display: none;
+    }
   }
   .smallDiv {
     width: 460px;

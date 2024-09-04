@@ -38,7 +38,7 @@ const Search = () => {
                 setData(e.target.value);
               }}
             />
-            <button type="submit">버튼</button>
+            <button type="submit" className='submitBtn'>버튼</button>
           </form>
         </div>
       </SearchStyled>
