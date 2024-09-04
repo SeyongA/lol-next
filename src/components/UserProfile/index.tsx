@@ -1,3 +1,5 @@
+import { UserProfileStyled } from './styled';
+
 interface DataProps {
   data?: {
     profileIconId?: number;
@@ -12,20 +14,24 @@ interface DataProps {
 const UserProfile = ({ data, user }: DataProps) => {
   return (
     <>
-      <div style={{ marginTop: 100 }}>
-        {/* <div style={{width:120, height:120, backgroundImage : `https://ddragon.leagueoflegends.com/cdn/14.17.1/img/profileicon/${data?.profileIconId}.png`}}></div> */}
-        <div>
-          <img
-            src={`https://ddragon.leagueoflegends.com/cdn/14.17.1/img/profileicon/${data?.profileIconId}.png`}
-            alt="profileImg"
-            style={{width : 120}}
-          />
-          <p>{data?.summonerLevel}</p>
+      <UserProfileStyled>
+        <div className="profileDiv">
+          {/* <div style={{width:120, height:120, backgroundImage : `https://ddragon.leagueoflegends.com/cdn/14.17.1/img/profileicon/${data?.profileIconId}.png`}}></div> */}
+          <div className='imgDiv'>
+            <img
+              src={`https://ddragon.leagueoflegends.com/cdn/14.17.1/img/profileicon/${data?.profileIconId}.png`}
+              alt="profileImg"
+              className='img'
+            />
+            <div className='levelDiv'>
+              <p>{data?.summonerLevel}</p>
+            </div>
+          </div>
+          <div className='gameName'>
+            <span>{user?.gameName}</span> #{user?.tagLine}
+          </div>
         </div>
-        <p>
-          {user?.gameName} # {user?.tagLine}
-        </p>
-      </div>
+      </UserProfileStyled>
     </>
   );
 };
