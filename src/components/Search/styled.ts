@@ -17,4 +17,8 @@ export const SearchStyled = styled.div`
       font-size: 20px;
     }
   }
+
+  .submitBtn{
+    display: none;
+  }
 `;
