@@ -5,7 +5,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import 'swiper/css/effect-coverflow';
 import { ChampionSliderStyled } from './styled'; // 사용자 정의 스타일
 import { SlideData } from '../../utill/slidesData';
 
@@ -18,21 +17,14 @@ const MainContent: React.FC<MainContentProps> = ({ slides }) => {
     <ChampionSliderStyled>
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectCoverflow]}
-        spaceBetween={50}
-        slidesPerView={3}
+        spaceBetween={20}  // 슬라이드 간의 간격을 줄였습니다.
+        slidesPerView={5}   // 한 번에 3개의 슬라이드를 보여줍니다.
+        centeredSlides={true} // 중앙에 슬라이드가 고정됩니다.
         navigation
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
-        effect="slide"
-        // coverflowEffect={{
-        //   rotate: 50,
-        //   stretch: 0,
-        //   depth: 100,
-        //   modifier: 1,
-        //   slideShadows: true,
-        // }}
-        // centeredSlides={true}
+        effect='slide'
       >
         {slides.map(slide => (
           <SwiperSlide key={slide.id}>
