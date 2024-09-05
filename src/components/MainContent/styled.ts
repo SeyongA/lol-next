@@ -10,10 +10,10 @@ export const ChampionSliderStyled = styled.div`
     display: none; /* 스크롤바 자체를 숨김 */
   }
 
-  /* 기본 슬라이드 박스 스타일 */
+  /* 기본 슬라이드 박스 스타일 (비활성화된 슬라이드는 투명 배경) */
   .swiper-slide {
-    background-color: #1f2331;
-    border-radius: 10px;
+    background-color: transparent;
+    /* border-radius: 10px; */
     padding: 10px;
     display: flex;
     align-items: center;
@@ -26,7 +26,7 @@ export const ChampionSliderStyled = styled.div`
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     z-index: 1;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); */
   }
 
   /* 슬라이드 안의 내용 정렬 */
@@ -38,20 +38,28 @@ export const ChampionSliderStyled = styled.div`
     width: 100%; /* 컨테이너 크기 채우기 */
   }
 
-  /* 활성화된 슬라이드 */
+  /* 활성화된 슬라이드 (배경색 적용) */
   .swiper-slide-active {
-    background-color: #2c3255;
+    background-color: #2c3255; /* 활성화된 슬라이드에서만 배경색 */
     transform: scale(1.05);
     z-index: 2;
   }
 
-  /* 이미지 스타일 */
-  .slide-image {
-    width: 150px; /* 이미지 크기 */
-    height: 250px;
+  /* 이미지 스타일 - 비활성화된 슬라이드의 이미지를 크게 */
+  .swiper-slide .slide-image {
+    width: 180px; /* 비활성화된 슬라이드에서 더 큰 이미지 */
+    height: 300px; /* 비활성화된 슬라이드에서 더 큰 이미지 */
     border-radius: 10px;
+    object-fit: cover; /* 이미지 비율을 유지하며 박스를 채움 */
+    transition: width 0.3s ease, height 0.3s ease;
+  }
+
+  /* 활성화된 슬라이드의 이미지 크기 유지 */
+  .swiper-slide-active .slide-image {
+    width: 150px; /* 활성화된 슬라이드 이미지 크기 */
+    height: 250px;
     object-fit: cover;
-    flex-shrink: 0;
+    transition: width 0.3s ease, height 0.3s ease;
   }
 
   /* 기본적으로 텍스트를 숨김 */
@@ -64,7 +72,7 @@ export const ChampionSliderStyled = styled.div`
 
   /* 활성화된 슬라이드에서 텍스트를 보이게 설정 */
   .swiper-slide-active .info-section {
-    display: flex; 
+    display: flex;
     flex-direction: column;
   }
 
@@ -102,7 +110,23 @@ export const ChampionSliderStyled = styled.div`
     line-height: 1.4;
     margin: 0;
   }
-  .swiper-pagination{
+
+  .swiper-pagination {
     display: none;
+  }
+
+  .swiper-slide-active {
+    background-color: #2c3255;
+    transform: translateX(0); /* 활성화된 슬라이드를 중앙에 위치 */
+    z-index: 2;
+    scale: 1.05;
+  }
+
+  .swiper-slide-prev {
+    transform: translateX(-10%); /* 이전 슬라이드를 왼쪽으로 이동 */
+  }
+
+  .swiper-slide-next {
+    transform: translateX(10%); /* 다음 슬라이드를 오른쪽으로 이동 */
   }
 `;
