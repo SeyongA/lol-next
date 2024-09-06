@@ -32,7 +32,7 @@ const MainContent: React.FC<MainContentProps> = ({ slides }) => {
         //   modifier: 1,
         //   slideShadows: true,
         // }}
-        // centeredSlides={true}
+        centeredSlides={true}
       >
         {slides.map(slide => (
           <SwiperSlide key={slide.id}>
