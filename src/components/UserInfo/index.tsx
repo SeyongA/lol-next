@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react';
 import UserProfile from '../UserProfile';
 import BkDiv from '../BkDiv';
 import Search from '../Search';
+import MidDiv from '../MidDiv';
+import { UserInfoStyled } from './styled';
+import { useRouter } from 'next/router';
+import BottomDiv from '../BottomDiv';
 
 interface DataProps {
   name: string | undefined;
@@ -16,7 +20,10 @@ const UserInfo = ({ name }: DataProps) => {
   const [champ, setChamp] = useState<object>();
   const [most, setMost] = useState<string>();
   const [mostA, setMostA] = useState<string>();
+  const [tier, setTier] = useState<object>();
+  const [matchData, setMatchData] = useState<object>();
 
+  const router = useRouter();
   const getData = async () => {
     try {
       const data = await axios({
@@ -31,9 +38,12 @@ const UserInfo = ({ name }: DataProps) => {
       setUserNameTag(data.data.APUUID);
       setMost(data.data.MostChampId);
       setChamp(data.data.champion.data);
+      setTier(data.data.userTier);
+      setMatchData(data.data.validGameData);
       console.log('=======================================', data); // 데이터 처리
     } catch (error) {
       console.error(error);
+      router.push('/404');
     }
   };
 
@@ -74,13 +84,19 @@ const UserInfo = ({ name }: DataProps) => {
     } else {
       return;
     }
-  }, [playerName, playerTag]);
+  }, [name, playerName, playerTag]);
 
   return (
     <>
-      <BkDiv data={mostA} />
-      <Search />
-      <UserProfile data={userLev} user={userNameTag} />
+      <UserInfoStyled>
+        <BkDiv data={mostA} />
+        <div className="titleBox">
+          <Search />
+          <UserProfile data={userLev} user={userNameTag} />
+        </div>
+      </UserInfoStyled>
+      <MidDiv data={tier} />
+      <BottomDiv data={matchData  }/>
     </>
   );
 };

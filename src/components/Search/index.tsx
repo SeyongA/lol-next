@@ -9,9 +9,8 @@ const Search = () => {
 
   const router = useRouter();
 
-  const path = router.asPath
-  console.log(path);
-  
+  const path = router.asPath;
+
   useEffect(() => {
     const cleanedName = data.split(' ').join('');
     const [a, b] = cleanedName.split('#');
@@ -19,12 +18,10 @@ const Search = () => {
     setRtag(b);
   }, [data]);
 
- 
-
   return (
     <>
       <SearchStyled>
-        <div className={` ${path === "/" ? "inputDiv" : "smallDiv"}`}>
+        <div className={` ${path === '/' ? 'inputDiv' : 'smallDiv'}`}>
           <form
             onSubmit={(e: any) => {
               e.preventDefault();
@@ -38,7 +35,9 @@ const Search = () => {
                 setData(e.target.value);
               }}
             />
-            <button type="submit" className='submitBtn'>버튼</button>
+            <button type="submit" className="submitBtn">
+              버튼
+            </button>
           </form>
         </div>
       </SearchStyled>
