@@ -96,7 +96,7 @@ const UserInfo = ({ name }: DataProps) => {
         </div>
       </UserInfoStyled>
       <MidDiv data={tier} />
-      <BottomDiv data={matchData  }/>
+      <BottomDiv data={matchData} champ={champ} userNameTag={userNameTag}/>
     </>
   );
 };

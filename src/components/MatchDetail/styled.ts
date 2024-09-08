@@ -24,11 +24,14 @@ export const MatchDetailStyled = styled.div`
       padding-left: 20px;
       div {
         border-radius: 10px;
+        img {
+          width: 100%;
+          border-radius: 10px;
+        }
       }
       .d1 {
         width: 80px;
         height: 80px;
-        border: 1px solid #333;
         position: relative;
         top: 20px;
       }
@@ -160,13 +163,13 @@ export const MatchDetailStyled = styled.div`
         position: absolute;
         left: 0;
         top: 14px;
-        div{
+        div {
           width: 146px;
           height: 26px;
           margin-bottom: 4px;
           border: 1px solid #333;
           position: relative;
-          img{
+          img {
             width: 20px;
             height: 20px;
             position: absolute;
@@ -174,22 +177,21 @@ export const MatchDetailStyled = styled.div`
             left: 2px;
             border-radius: 5px;
           }
-          p{
-          width: 120px;
-          height: 20px;
-          position: absolute;
-          justify-content: end;
-          font-size: 12px;
-          top: 0px;
-          right: 0;
-          text-align: end;
-          line-height: 2;
-          padding-right: 4px;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          p {
+            width: 120px;
+            height: 20px;
+            position: absolute;
+            justify-content: end;
+            font-size: 12px;
+            top: 0px;
+            right: 0;
+            text-align: end;
+            line-height: 2;
+            padding-right: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
         }
-        }
-
       }
       .team2 {
         width: 148px;
@@ -197,13 +199,13 @@ export const MatchDetailStyled = styled.div`
         position: absolute;
         right: 0;
         top: 14px;
-        div{
+        div {
           width: 146px;
           height: 26px;
           margin-bottom: 4px;
           border: 1px solid #333;
           position: relative;
-          img{
+          img {
             width: 20px;
             height: 20px;
             position: absolute;
@@ -211,22 +213,38 @@ export const MatchDetailStyled = styled.div`
             left: 2px;
             border-radius: 5px;
           }
-          p{
-          width: 120px;
-          height: 20px;
-          position: absolute;
-          justify-content: end;
-          font-size: 12px;
-          top: 0px;
-          right: 0;
-          text-align: end;
-          line-height: 2;
-          padding-right: 4px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
+          p {
+            width: 120px;
+            height: 20px;
+            position: absolute;
+            justify-content: end;
+            font-size: 12px;
+            top: 0px;
+            right: 0;
+            text-align: end;
+            line-height: 2;
+            padding-right: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
         }
       }
+    }
+  }
+  #win {
+    background-color: #ecf2ff;
+    .result {
+      color: #4171d6;
+      font-size: 18px;
+      font-weight: 700;
+    }
+  }
+  #losses {
+    background-color: #fff1f3;
+    .result {
+      color: #d31a45;
+      font-size: 18px;
+      font-weight: 700;
     }
   }
 `;
