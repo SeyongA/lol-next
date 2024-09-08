@@ -130,6 +130,67 @@ app.get('/past5Games', async (req, res) => {
   }
 });
 
+app.get('/userRank', async (req, res) => {
+  const ChallengerRankData = async () => {
+    try {
+      const challengerRank = await axios.get(
+        `https://kr.api.riotgames.com/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5?api_key=${api_key}`
+      );
+      return challengerRank.data.entries;
+    } catch (error) {
+      console.error(`Error: ${error.message}`);
+      return null;
+    }
+  };
+
+  const GrandmasterRankData = async () => {
+    try {
+      const grandmasterRank = await axios.get(
+        `https://kr.api.riotgames.com/lol/league/v4/grandmasterleagues/by-queue/RANKED_SOLO_5x5?api_key=${api_key}`
+      );
+      return grandmasterRank.data.entries;
+    } catch (error) {
+      console.error(`Error: ${error.message}`);
+      return null;
+    }
+  };
+
+  const MasterRankData = async () => {
+    try {
+      const masterRank = await axios.get(
+        `https://kr.api.riotgames.com/lol/league/v4/masterleagues/by-queue/RANKED_SOLO_5x5?api_key=${api_key}`
+      );
+      return masterRank.data.entries; 
+    } catch (error) {
+      console.error(`Error: ${error.message}`);
+      return null;
+    }
+  };
+
+  try {
+   
+    const [challengerData, grandmasterData, masterData] = await Promise.all([
+      ChallengerRankData(),
+      GrandmasterRankData(),
+      MasterRankData(),
+    ]);
+
+    // 데이터 병합 (null인 데이터는 제외)
+    const rankingData = [
+      ...(challengerData || []),
+      ...(grandmasterData || []),
+      ...(masterData || []),
+    ];
+
+    // 결과 응답
+    res.json({ result: true, data: rankingData });
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+    res.status(500).json({ result: false, message: '데이터를 가져오는 중 오류가 발생했습니다.' });
+  }
+});
+
+
 app.listen(4000, function () {
   console.log('Server is running on http://localhost:4000');
 });
