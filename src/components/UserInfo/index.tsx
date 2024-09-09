@@ -84,7 +84,19 @@ const UserInfo = ({ name }: DataProps) => {
     } else {
       return;
     }
-  }, [name, playerName, playerTag]);
+  }, [playerName, playerTag]);
+
+  useEffect(() => {
+    if (router.isReady) {
+      const searchQuery = router.asPath.split('/search/')[1];
+
+      if (searchQuery) {
+        const [namePart, tagPart] = searchQuery.split('%20-%20');
+        setPlayerName(decodeURIComponent(namePart));
+        setPlayerTag(tagPart);
+      }
+    }
+  }, [router.asPath, router.isReady]);
 
   return (
     <>
@@ -96,7 +108,7 @@ const UserInfo = ({ name }: DataProps) => {
         </div>
       </UserInfoStyled>
       <MidDiv data={tier} />
-      <BottomDiv data={matchData} champ={champ} userNameTag={userNameTag}/>
+      <BottomDiv data={matchData} champ={champ} userNameTag={userNameTag} />
     </>
   );
 };
