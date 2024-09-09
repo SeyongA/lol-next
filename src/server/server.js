@@ -34,7 +34,7 @@ app.get('/past5Games', async (req, res) => {
 
     // 유저의 최근 20경기 ID 받는 코드
     const API_CALL = `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${PUUID}/ids?start=0&count=5&api_key=${api_key}`;
-    
+
     const gameIDs = await axios
       .get(API_CALL)
       .then((response) => response.data)
@@ -130,6 +130,41 @@ app.get('/past5Games', async (req, res) => {
   }
 });
 
+app.get('/spell', async (req, res) => {
+  try {
+    const API_SPELL = `https://ddragon.leagueoflegends.com/cdn/14.17.1/data/en_US/summoner.json?api_key=${api_key}`
+    const getSpell = await axios
+    .get(API_SPELL)
+    .then((res)=>res.data)
+    .catch((err) => {
+      console.error(`Error fetching user tier: ${err}`);
+      return null;
+    });
+
+    res.json({result : true, getSpell})
+  } catch (error) {
+    console.error(`Error`);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+app.get('/rune', async (req, res) => {
+  try {
+    const API_RUNE = `https://ddragon.leagueoflegends.com/cdn/14.17.1/data/ko_KR/runesReforged.json`
+    const getRune = await axios
+    .get(API_RUNE)
+    .then((res)=>res.data)
+    .catch((err) => {
+      console.error(`Error fetching user tier: ${err}`);
+      return null;
+    });
+
+    res.json({result : true, getRune})
+  } catch (error) {
+    console.error(`Error`);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 app.get('/userRank', async (req, res) => {
   const ChallengerRankData = async () => {
     try {
@@ -160,7 +195,7 @@ app.get('/userRank', async (req, res) => {
       const masterRank = await axios.get(
         `https://kr.api.riotgames.com/lol/league/v4/masterleagues/by-queue/RANKED_SOLO_5x5?api_key=${api_key}`
       );
-      return masterRank.data.entries; 
+      return masterRank.data.entries;
     } catch (error) {
       console.error(`Error: ${error.message}`);
       return null;
@@ -168,7 +203,6 @@ app.get('/userRank', async (req, res) => {
   };
 
   try {
-   
     const [challengerData, grandmasterData, masterData] = await Promise.all([
       ChallengerRankData(),
       GrandmasterRankData(),
@@ -176,11 +210,7 @@ app.get('/userRank', async (req, res) => {
     ]);
 
     // 데이터 병합 (null인 데이터는 제외)
-    const rankingData = [
-      ...(challengerData || []),
-      ...(grandmasterData || []),
-      ...(masterData || []),
-    ];
+    const rankingData = [...(challengerData || []), ...(grandmasterData || []), ...(masterData || [])];
 
     // 결과 응답
     res.json({ result: true, data: rankingData });
@@ -189,7 +219,6 @@ app.get('/userRank', async (req, res) => {
     res.status(500).json({ result: false, message: '데이터를 가져오는 중 오류가 발생했습니다.' });
   }
 });
-
 
 app.listen(4000, function () {
   console.log('Server is running on http://localhost:4000');

@@ -14,7 +14,7 @@ export const MatchDetailStyled = styled.div`
       position: absolute;
       left: 0;
       padding: 20px;
-      line-height: 2;
+      line-height: 1.7;
     }
     .champInfo {
       width: 400px;
@@ -114,6 +114,8 @@ export const MatchDetailStyled = styled.div`
         left: 150px;
         top: 20px;
         border-radius: 19px;
+        background-color: #333;
+
       }
       .d12 {
         width: 38px;
@@ -123,6 +125,15 @@ export const MatchDetailStyled = styled.div`
         left: 150px;
         top: 62px;
         border-radius: 19px;
+        background-color: #333;
+        padding: 1%;
+        img{
+          box-sizing: border-box;
+          width: 100;
+          margin : 0 auto;
+          text-align: center;
+
+        }
       }
       .kd {
         width: 100px;
