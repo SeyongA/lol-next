@@ -5,9 +5,7 @@ import { HeaderStyled } from './styled';
 const Header = () => {
   const [scrollTop, setScrollTop] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
-
   const router = useRouter();
-  const path = router.asPath;
 
   // 스크롤 이벤트 핸들러
   const handleScroll = () => {
@@ -18,8 +16,8 @@ const Header = () => {
     } else if (currentScroll < scrollTop) {
       // 스크롤을 위로 올렸을 때, 특히 스크롤 위치가 100 이하일 때 헤더 표시
       setIsVisible(true);
-    } 
-    if(currentScroll <= 100) {
+    }
+    if (currentScroll <= 100) {
       setIsVisible(true);
     }
     setScrollTop(currentScroll); // 이전 스크롤 위치 업데이트
@@ -33,12 +31,19 @@ const Header = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [handleScroll]);
+  }, [scrollTop]); // handleScroll 대신 scrollTop으로 수정하여 오류 방지
+
+  // 홈으로 이동하는 함수
+  const goHome = () => {
+    router.push('/');
+  };
 
   return (
     <HeaderStyled style={{ top: isVisible ? '0' : '-100px', transition: 'top 0.3s' }}>
       <div className="nav">
-        <div className="navLogo">LOL.NEXT</div>
+        <div className="navLogo" onClick={goHome} style={{ cursor: 'pointer' }}>
+          LOL.NEXT
+        </div>
         <div className="navBox">
           <div>챔피언 티어</div>
           <div>소환사 랭킹</div>
