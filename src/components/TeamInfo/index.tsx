@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 interface DataProps {
   data: any;
@@ -7,10 +6,7 @@ interface DataProps {
 
 const TeamInfo = ({ data }: DataProps) => {
   const router = useRouter();
-  useEffect(()=>{
-    console.log(data.championName, '%%%');
-    
-  },[])
+
   return (
     <>
       <div>

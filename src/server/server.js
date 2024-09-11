@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+const { RiYoutubeFill } = require('react-icons/ri');
 const app = express();
 
 app.use(cors());
@@ -21,6 +22,111 @@ function getPlayerPUUID(playerName, playerTag) {
     });
 }
 
+function getPlayerMatchInfo(PUUID, start, end) {
+  return axios
+    .get(
+      `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${PUUID}/ids?start=${start}&count=${end}&api_key=${api_key}`
+    )
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.error(`Error fetching PUUID: ${err}`);
+      return null;
+    });
+}
+
+function fetchGameData(gameID) {
+  try {
+    return axios
+    .get(
+      `https://asia.api.riotgames.com/lol/match/v5/matches/${gameID}?api_key=${api_key}`
+    )
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.error(`error: ${err}`);
+      return null;
+    });
+  } catch (error) {
+    console.error(`Error fetching data for game ID: ${gameID}`, error);
+    return null;
+  }
+};
+
+//챔피언 정보 
+function getChamp() {
+  try {
+    return axios
+    .get(
+      `https://ddragon.leagueoflegends.com/cdn/14.17.1/data/ko_KR/champion.json`
+    )
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.error(`error: ${err}`);
+      return null;
+    });
+  } catch (error) {
+    console.error(`Error : ${error}`);
+    return null;
+  }
+};
+
+
+//매치20경기 KDA, 경기수 표시 win / losse 표시
+app.get('/match20info', async(req, res)=>{
+  // 한번에 20경기가 아니라 1경기씩 20개를 호출? (이게 더빠른가?)
+  try {
+    const { playerName, playerTag } = req.query;
+
+    // 유저 정보 검색 (PUUID 얻기 위함)
+    const APUUID = await getPlayerPUUID(playerName, playerTag);
+    const PUUID = APUUID.puuid;
+    
+    const gameIDs = await getPlayerMatchInfo(PUUID, 0, 10)
+    if (!gameIDs) {
+      return res.status(404).json({ error: 'MATCH not found' });
+    }
+
+    // 모든 게임 데이터 요청
+
+    const fetchAllGameData = async () => {
+      const allGameData = [];
+
+      for (const gameID of gameIDs) {
+        const data = await fetchGameData(gameID);
+        allGameData.push(data);
+      }
+
+      return allGameData;
+    };
+
+    // 게임 데이터를 비동기적으로 가져옴
+    const validGameData = await fetchAllGameData();
+    const champion = await getChamp();
+
+    res.json({result :true, PUUID, validGameData, champion})
+  } catch (error) {
+    console.error(`error: ${error}`);
+    return null;
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.get('/past5Games', async (req, res) => {
   try {
     const { playerName, playerTag } = req.query;
@@ -33,28 +139,11 @@ app.get('/past5Games', async (req, res) => {
     const PUUID = APUUID.puuid;
 
     // 유저의 최근 20경기 ID 받는 코드
-    const API_CALL = `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${PUUID}/ids?start=0&count=5&api_key=${api_key}`;
 
-    const gameIDs = await axios
-      .get(API_CALL)
-      .then((response) => response.data)
-      .catch((err) => {
-        console.error(`Error fetching game IDs: ${err}`);
-        return [];
-      });
-
-    // 게임 데이터 요청 함수
-    const fetchGameData = async (gameID) => {
-      try {
-        const response = await axios.get(
-          `https://asia.api.riotgames.com/lol/match/v5/matches/${gameID}?api_key=${api_key}`
-        );
-        return response.data;
-      } catch (error) {
-        console.error(`Error fetching data for game ID: ${gameID}`, error);
-        return null;
-      }
-    };
+    const gameIDs = await getPlayerMatchInfo(PUUID, 0, 10)
+    if (!gameIDs) {
+      return res.status(404).json({ error: 'MATCH not found' });
+    }
 
     // 모든 게임 데이터 요청
 
@@ -94,14 +183,8 @@ app.get('/past5Games', async (req, res) => {
       });
 
     // 챔피언 정보 받아오기
-    const urlChamp = `https://ddragon.leagueoflegends.com/cdn/14.17.1/data/ko_KR/champion.json`;
-    const champion = await axios
-      .get(urlChamp)
-      .then((response) => response.data)
-      .catch((err) => {
-        console.error(`Error fetching champion data: ${err}`);
-        return null;
-      });
+    const champion = await getChamp();
+
 
     // 가장 많이 플레이한 챔피언 ID
     const urlMost = `https://kr.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/${PUUID}?api_key=${api_key}`;
