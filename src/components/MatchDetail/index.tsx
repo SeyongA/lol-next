@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { MatchDetailStyled } from './styled';
+import TeamInfo from '../TeamInfo';
 
 interface DataProps {
   data?: any;
@@ -34,6 +35,7 @@ const MatchDetail = ({ data, champ, userNameTag, spell, rune: runeAPI }: DataPro
   const [runeString1, setRuneString1] = useState<string>();
   const [min, setMin] = useState<number>();
   const [sec, setSec] = useState<string>();
+  const [queType, setQueType] = useState<string>();
   const { puuid } = userNameTag;
 
   useEffect(() => {
@@ -46,6 +48,25 @@ const MatchDetail = ({ data, champ, userNameTag, spell, rune: runeAPI }: DataPro
     }
   }, [champ, data]);
 
+  useEffect(() => {
+    if (data !== undefined) {
+      if (data.info.queueId === 400) {
+        setQueType(`일반`);
+      } else if (data.info.queueId === 420) {
+        setQueType(`솔로랭크`);
+      } else if (data.info.queueId === 430) {
+        setQueType(`일반`);
+      } else if (data.info.queueId === 440) {
+        setQueType(`자유랭크`);
+      } else if (data.info.queueId === 450) {
+        setQueType(`무작위 총력전`);
+      } else if (data.info.queueId === 900) {
+        setQueType(`URF`);
+      } else {
+        setQueType(`모드`);
+      }
+    }
+  }, [data]);
   useEffect(() => {
     if (myData !== undefined) {
       setChampion(myData?.championName);
@@ -60,6 +81,7 @@ const MatchDetail = ({ data, champ, userNameTag, spell, rune: runeAPI }: DataPro
       setK(myData?.kills);
       setD(myData?.deaths);
       setA(myData?.assists);
+
       setSpelln0(myData?.summoner1Id);
       setSpelln1(myData?.summoner2Id);
       setRune0(myData?.perks.styles[0].selections[0].perk);
@@ -137,12 +159,9 @@ const MatchDetail = ({ data, champ, userNameTag, spell, rune: runeAPI }: DataPro
         <div className="detailDiv" id={result ? 'win' : 'losses'}>
           <div className="winInfo">
             <p className="result">{result ? '승리' : '패배'}</p>
-            <p>{`솔랭`}</p>
+            <p>{queType}</p>
             <p>{`${min}분 ${sec}초`}</p>
             <p>{gameTime()}</p>
-            <div className="lpInfo">
-              <p>↑ 21LP</p>
-            </div>
           </div>
           <div className="champInfo">
             <div className="d1">
@@ -185,56 +204,22 @@ const MatchDetail = ({ data, champ, userNameTag, spell, rune: runeAPI }: DataPro
             <p className="kda">{`KDA ${(myData?.challenges.kda).toFixed(2)}`}</p>
           </div>
           <div className="lineInfo">
-            <p>1.9인분 1등</p>
-            <p>라인전 55 : 45</p>
-            <p>분당 : 8.2 CS</p>
-            <p>팀운 보통</p>
+            <p>0.0인분 0등</p>
+            <p>라인전 00 : 00</p>
+            <p>분당 : 0.0 CS</p>
+            <p>팀운 0</p>
             <p>MVP</p>
           </div>
           <div className="teamInfo">
             <div className="team1">
-              <div>
-                <img src={``} alt="" />
-                <p>JustLikeThatKRAAAA</p>
-              </div>
-              <div>
-                <img src={``} alt="" />
-                <p></p>
-              </div>
-              <div>
-                <img src={``} alt="" />
-                <p></p>
-              </div>
-              <div>
-                <img src={``} alt="" />
-                <p></p>
-              </div>
-              <div>
-                <img src={``} alt="" />
-                <p></p>
-              </div>
+              {data.info.participants.slice(0, 5).map((x: any, i: number) => {
+                return <TeamInfo data={x} key={i} />;
+              })}
             </div>
             <div className="team2">
-              <div>
-                <img src={``} alt="" />
-                <p>JustLikeThatKssdadsadasdsadadRAAAA</p>
-              </div>
-              <div>
-                <img src={``} alt="" />
-                <p></p>
-              </div>
-              <div>
-                <img src={``} alt="" />
-                <p></p>
-              </div>
-              <div>
-                <img src={``} alt="" />
-                <p></p>
-              </div>
-              <div>
-                <img src={``} alt="" />
-                <p></p>
-              </div>
+              {data.info.participants.slice(5, 10).map((x: any, i: number) => {
+                return <TeamInfo data={x} key={i} />;
+              })}
             </div>
           </div>
         </div>
