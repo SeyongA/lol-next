@@ -1,3 +1,4 @@
+// features/Header.tsx
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { HeaderStyled } from './styled';
@@ -7,9 +8,9 @@ const Header = () => {
   const [isVisible, setIsVisible] = useState(true);
   const router = useRouter();
 
-  // 스크롤 이벤트 핸들러
   const handleScroll = () => {
     const currentScroll = window.scrollY || document.documentElement.scrollTop;
+
     if (currentScroll > scrollTop) {
       // 스크롤을 아래로 내렸을 때, 헤더 숨김
       setIsVisible(false);
@@ -21,11 +22,18 @@ const Header = () => {
       setIsVisible(true);
     }
     setScrollTop(currentScroll); // 이전 스크롤 위치 업데이트
+
   };
 
-  // 스크롤 이벤트 리스너 등록
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrollTop]);
+
+
+  // 소환사 랭킹 클릭 시 라우팅
+  const handleRankingClick = () => {
+    router.push('/rank'); // 라우터의 push 메서드로 /rank로 이동
 
     // 컴포넌트가 언마운트될 때 리스너 제거
     return () => {
@@ -36,6 +44,7 @@ const Header = () => {
   // 홈으로 이동하는 함수
   const goHome = () => {
     router.push('/');
+
   };
 
   return (
@@ -46,7 +55,7 @@ const Header = () => {
         </div>
         <div className="navBox">
           <div>챔피언 티어</div>
-          <div>소환사 랭킹</div>
+          <div onClick={handleRankingClick}>소환사 랭킹</div> 
           <div>프로 관전</div>
           <div>커뮤니티</div>
           <div>Next 멤버쉽</div>
