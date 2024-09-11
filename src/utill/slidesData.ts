@@ -118,6 +118,16 @@ const slidesData: SlideData[] = [
 
   // 정글 라인
   {
+    id: 26,
+    title: '피들스틱 (정글)',
+    description: '14.17 패치 승률 49.0%, 픽률 3.7%, 밴률 1.6%',
+    imageUrl: 'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Fiddlesticks_0.jpg',
+    winRate: '49.0%',
+    pickRate: '3.7%',
+    banRate: '1.6%',
+    points: 'Q - 화살 세례: 공격 속도 30% 증가, E - 차오르는 공포: 피해량 10% 증가',
+  },
+  {
     id: 11,
     title: '킨드레드 (정글)',
     description: '14.17 패치 승률 49.0%, 픽률 3.7%, 밴률 1.6%',
@@ -131,7 +141,7 @@ const slidesData: SlideData[] = [
     id: 12,
     title: '리신 (정글)',
     description: '14.17 패치 승률 47.5%, 픽률 12.4%, 밴률 5.6%',
-    imageUrl: 'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/LeeSin_0.jpg',
+    imageUrl: 'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/LeeSin_4.jpg',
     winRate: '47.5%',
     pickRate: '12.4%',
     banRate: '5.6%',
