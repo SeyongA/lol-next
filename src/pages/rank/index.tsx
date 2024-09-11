@@ -7,6 +7,7 @@ interface Summoner {
   summonerName: string;
   rank: string;
   leaguePoints: number;
+  puuid: string; // 추가된 필드
 }
 
 const RankPage = () => {
@@ -83,8 +84,9 @@ const RankPage = () => {
             <thead>
               <tr style={{ backgroundColor: "#D1DBFF", textAlign: "center", margin: "30px 0px auto" }}>
                 <th style={{ padding: "10px", textAlign: "center" }}>순위</th>
-                <th style={{ padding: "10px", textAlign: "center" }}>소환사</th>
-                <th style={{ padding: "10px", textAlign: "center" }}>점수</th>
+                <th style={{ padding: "10px", textAlign: "center" }}>소환사 이름</th>
+                <th style={{ padding: "10px", textAlign: "center" }}>랭크</th>
+                <th style={{ padding: "10px", textAlign: "center" }}>이건 점수</th>
               </tr>
             </thead>
             <tbody>
@@ -92,13 +94,14 @@ const RankPage = () => {
                 currentEntries.map((entry, index) => (
                   <tr key={index} style={{ borderBottom: "1px solid #ddd" }}>
                     <td style={{ padding: "10px", textAlign: "center" }}>{indexOfFirstEntry + index + 1}</td>
-                    <td style={{ padding: "10px" }}>{entry.summonerName || '소환사 이름 불러오는 중...'}</td>
-                    <td style={{ padding: "10px", textAlign: "center" }}>{entry.rank} {entry.leaguePoints} LP</td>
+                    <td style={{ padding: "10px" }}>{entry.summonerId}</td>
+                    <td style={{ padding: "10px", textAlign: "center" }}>{entry.rank}</td>
+                    <td style={{ padding: "10px", textAlign: "center" }}>{entry.leaguePoints} LP</td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan={3} style={{ padding: "10px", textAlign: "center" }}>
+                  <td colSpan={4} style={{ padding: "10px", textAlign: "center" }}>
                     No ranking data available.
                   </td>
                 </tr>

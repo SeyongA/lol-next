@@ -7,20 +7,6 @@ app.use(cors());
 
 const api_key = 'RGAPI-93139d5d-15fe-47cb-b2f9-b3cffff45578';
 
-function getPlayerPUUID(playerName, playerTag) {
-  return axios
-    .get(
-      `https://asia.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${playerName}/${playerTag}?api_key=${api_key}`
-    )
-    .then((response) => {
-      return response.data;
-    })
-    .catch((err) => {
-      console.error(`Error fetching PUUID: ${err}`);
-      return null;
-    });
-}
-
 app.get('/past5Games', async (req, res) => {
   try {
     const { playerName, playerTag } = req.query;
@@ -158,30 +144,19 @@ app.get('/userRank', async (req, res) => {
     }
   };
 
-  const MasterRankData = async () => {
-    try {
-      const masterRank = await axios.get(
-        `https://kr.api.riotgames.com/lol/league/v4/masterleagues/by-queue/RANKED_SOLO_5x5?api_key=${api_key}`
-      );
-      return masterRank.data.entries;
-    } catch (error) {
-      console.error(`Error: ${error.message}`);
-      return null;
-    }
-  };
-
   try {
-    const [challengerData, grandmasterData, masterData] = await Promise.all([
+
+    const [challengerData, grandmasterData] = await Promise.all([
       ChallengerRankData(),
       GrandmasterRankData(),
-      MasterRankData(),
+     
     ]);
 
     // 데이터 병합 (null인 데이터는 제외)
     const rankingData = [
       ...(challengerData || []),
       ...(grandmasterData || []),
-      ...(masterData || []),
+    
     ];
 
     // summonerId만 추출한 새로운 배열 생성
@@ -190,10 +165,9 @@ app.get('/userRank', async (req, res) => {
     // 결과 응답
     res.json({ 
       result: true, 
-      data: summonerIds // 소환사 ID들만 응답으로 보냄
+      data: rankingData // 소환사 ID들만 응답으로 보냄
     });
 
-    console.log(summonerIds); // 서버 콘솔에 summonerId만 출력하여 확인
   } catch (error) {
     console.error(`Error: ${error.message}`);
     res.status(500).json({ 
