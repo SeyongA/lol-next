@@ -41,9 +41,9 @@ const MatchDetail = ({ data, champ, userNameTag, spell, rune: runeAPI }: DataPro
   useEffect(() => {
     if (data !== undefined) {
       if (champ !== undefined) {
-        const matchingParticipant = data.info.participants.find((participant: any) => participant.puuid === puuid);
+        const matchingParticipant = data?.info.participants.find((participant: any) => participant.puuid === puuid);
         setMyData(matchingParticipant);
-        setEndTime(data.info.gameEndTimestamp);
+        setEndTime(data?.info.gameEndTimestamp);
       }
     }
   }, [champ, data]);
@@ -90,12 +90,6 @@ const MatchDetail = ({ data, champ, userNameTag, spell, rune: runeAPI }: DataPro
       setSec(String(Math.round(myData?.challenges.gameLength % 60)).padStart(2, '0'));
     }
   }, [myData]);
-
-  useEffect(() => {
-    if (myData !== undefined) {
-      console.log(myData);
-    }
-  }, [item0]);
 
   //스펠
   useEffect(() => {
@@ -212,12 +206,12 @@ const MatchDetail = ({ data, champ, userNameTag, spell, rune: runeAPI }: DataPro
           </div>
           <div className="teamInfo">
             <div className="team1">
-              {data.info.participants.slice(0, 5).map((x: any, i: number) => {
+              {data?.info.participants.slice(0, 5).map((x: any, i: number) => {
                 return <TeamInfo data={x} key={i} />;
               })}
             </div>
             <div className="team2">
-              {data.info.participants.slice(5, 10).map((x: any, i: number) => {
+              {data?.info.participants.slice(5, 10).map((x: any, i: number) => {
                 return <TeamInfo data={x} key={i} />;
               })}
             </div>

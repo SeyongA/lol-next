@@ -24,7 +24,7 @@ const UserInfo = ({ name }: DataProps) => {
   const [matchData, setMatchData] = useState<object>();
 
   const router = useRouter();
-  const getData = async () => {
+    const getData = async () => {
     try {
       const data = await axios({
         method: 'get',
