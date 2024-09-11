@@ -1,66 +1,69 @@
 import styled from 'styled-components';
 
 export const EyeStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 40vh;
-
   .footer {
-    background-color: #1e1e2f; /* 어두운 배경 */
-    color: #ffffff;
-    padding: 30px;
-    width: 100%;
-  }
-
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 10%;
-  }
-
-  .left-column, .right-column {
+    background-color: #1e1e2f; 
+    color: #ffffff; 
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    color: #00e676; /* 네온 초록색 */
+    align-items: center;
+    text-align: center;
   }
 
-  .left-column h2, .right-column h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    color: #ff4081; /* 네온 핑크색 */
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+
+    ul {
+      display: flex;
+      gap: 15px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    li:hover {
+      color: #ff4081;
+    }
+
+    .social-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #00e676;
+    }
   }
 
-  .left-column ul, .right-column ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .left-column li, .right-column li {
-    margin: 5px 0;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-
-  .left-column li:hover, .right-column li:hover {
-    color: #ffffff; /* 아이템 호버 시 흰색 강조 */
+  .footer-description {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 0.8em;
+    color: #aaaaaa;
+    margin-bottom: 20px;
+    line-height: 1.5;
   }
 
   .eyeContainer {
-    position: relative;
-    width: 200px;
-    height: 200px;
+    position: relative; 
+    width: 225px; 
+    height: 225px; 
   }
 
   .eyeBall {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 40px;
-    height: 40px;
-    transform-origin: center;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease-out;
+    position: absolute; 
+    width: 25px; 
+    height: 25px; 
+    transform-origin: center; 
+    pointer-events: none; 
+    transform: translate(-50%, -50%); 
+    transition: transform 0.2s ease-out; 
   }
 `;
