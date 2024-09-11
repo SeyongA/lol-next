@@ -16,8 +16,8 @@ const Footer = () => {
     const mouseY = e.clientY;
 
     const centers = [
-      { x: 60, y: 120, maxMove: 10 }, // 왼쪽 눈
-      { x: 120, y: 93, maxMove: 10 }, // 오른쪽 눈
+      { x: 60, y: 130, maxMove: 10 }, // 왼쪽 눈
+      { x: 120, y: 93, maxMove: 8 }, // 오른쪽 눈
     ];
 
     eyeBallRefs.forEach((eyeBallRef, index) => {
@@ -43,7 +43,48 @@ const Footer = () => {
 
   return (
     <EyeStyled>
-      <footer className="footer">
+        <div className="eyeContainer" ref={eyeContainerRef}>
+          <Image src={blackcircle} alt="Icon" layout="fill" objectFit="contain" />
+
+          {/* 왼쪽 눈동자 */}
+          <svg
+            className="eyeBall"
+            ref={eyeBallRefs[0]}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            style={{
+              position: 'absolute',
+              top: '92px',
+              left: '52px',
+              width: '30px',
+              height: '30px',
+              transition: 'transform 0.1s',
+            }}
+          >
+            <circle cx="12" cy="12" r="7" fill="white" />
+            <circle cx="12" cy="12" r="4" fill="black" />
+          </svg>
+
+          {/* 오른쪽 눈동자 */}
+          <svg
+            className="eyeBall"
+            ref={eyeBallRefs[1]}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            style={{
+              position: 'absolute',
+              top: '84px',
+              left: '110px',
+              width: '30px',
+              height: '30px',
+              transition: 'transform 0.1s',
+            }}
+          >
+            <circle cx="12" cy="12" r="7" fill="white" />
+            <circle cx="12" cy="12" r="4" fill="black" />
+          </svg>
+        </div>
+      <div className="footer">
         <div className="footer-links">
           <ul>
             <li>공지사항</li>
@@ -61,56 +102,14 @@ const Footer = () => {
 
         <div className="footer-description">
           <p>
-            lol.Next is hosted by PS Analytics, Inc. lol.ps isn’t endorsed by Riot Games and doesn’t reflect the views
+            LoL.Next is hosted by PS Analytics, Inc. lol.ps isn’t endorsed by Riot Games and doesn’t reflect the views
             or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League
             of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends ©
             Riot Games, Inc.
           </p>
           <p>PS Analytics, Inc. © 2020</p>
         </div>
-
-        <div className="eyeContainer" ref={eyeContainerRef}>
-          <Image src={blackcircle} alt="Icon" layout="fill" objectFit="contain" />
-
-          {/* 왼쪽 눈동자 */}
-          <svg
-            className="eyeBall"
-            ref={eyeBallRefs[0]}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            style={{
-              position: 'absolute',
-              top: '98px',
-              left: '52px',
-              width: '20px',
-              height: '20px',
-              transition: 'transform 0.1s',
-            }}
-          >
-            <circle cx="12" cy="12" r="10" fill="white" />
-            <circle cx="12" cy="12" r="5" fill="black" />
-          </svg>
-
-          {/* 오른쪽 눈동자 */}
-          <svg
-            className="eyeBall"
-            ref={eyeBallRefs[1]}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            style={{
-              position: 'absolute',
-              top: '92px',
-              left: '110px',
-              width: '20px',
-              height: '20px',
-              transition: 'transform 0.1s',
-            }}
-          >
-            <circle cx="12" cy="12" r="10" fill="white" />
-            <circle cx="12" cy="12" r="5" fill="black" />
-          </svg>
-        </div>
-      </footer>
+      </div>
     </EyeStyled>
   );
 };

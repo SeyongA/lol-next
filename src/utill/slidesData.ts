@@ -280,7 +280,115 @@ const slidesData: SlideData[] = [
     pickRate: '8.7%',
     banRate: '2.6%',
     points: 'W - 변이: 변이 시간 증가',
-  }
+  },
+  {
+    id: 26,
+    title: '피오라 (탑)',
+    description: '14.17 패치 승률 51.5%, 픽률 3.2%, 밴률 6.0%',
+    imageUrl: 'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Fiora_0.jpg',
+    winRate: '51.5%',
+    pickRate: '3.2%',
+    banRate: '6.0%',
+    points: 'Q - 결투: 기본 피해량 15% 증가',
+  },
+  {
+    id: 27,
+    title: '제이스 (탑)',
+    description: '14.17 패치 승률 49.8%, 픽률 5.0%, 밴률 4.2%',
+    imageUrl: 'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Jayce_0.jpg',
+    winRate: '49.8%',
+    pickRate: '5.0%',
+    banRate: '4.2%',
+    points: 'W - 폭풍의 벽: 방어력 10% 감소',
+  },
+
+  // 미드 라인 추가
+  {
+    id: 28,
+    title: '룰루 (미드)',
+    description: '14.17 패치 승률 48.2%, 픽률 6.0%, 밴률 3.8%',
+    imageUrl: 'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Lulu_0.jpg',
+    winRate: '48.2%',
+    pickRate: '6.0%',
+    banRate: '3.8%',
+    points: 'W - 변이: 변이 시간 증가',
+  },
+  {
+    id: 29,
+    title: '오리아나 (미드)',
+    description: '14.17 패치 승률 49.6%, 픽률 7.3%, 밴률 4.5%',
+    imageUrl: 'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Orianna_0.jpg',
+    winRate: '49.6%',
+    pickRate: '7.3%',
+    banRate: '4.5%',
+    points: 'Q - 명령: 공: 피해량 20% 증가',
+  },
+
+  // 정글 라인 추가
+  {
+    id: 30,
+    title: '우디르 (정글)',
+    description: '14.17 패치 승률 50.7%, 픽률 6.4%, 밴률 4.8%',
+    imageUrl: 'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Udyr_0.jpg',
+    winRate: '50.7%',
+    pickRate: '6.4%',
+    banRate: '4.8%',
+    points: 'Q - 용의 분노: 공격 속도 증가',
+  },
+  {
+    id: 31,
+    title: '엘리스 (정글)',
+    description: '14.17 패치 승률 48.9%, 픽률 5.1%, 밴률 3.3%',
+    imageUrl: 'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Elise_0.jpg',
+    winRate: '48.9%',
+    pickRate: '5.1%',
+    banRate: '3.3%',
+    points: 'Q - 거미 송곳니: 피해량 15% 증가',
+  },
+
+  // 원딜 라인 추가
+  {
+    id: 32,
+    title: '케이틀린 (원딜)',
+    description: '14.17 패치 승률 50.6%, 픽률 11.3%, 밴률 2.4%',
+    imageUrl: 'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Caitlyn_0.jpg',
+    winRate: '50.6%',
+    pickRate: '11.3%',
+    banRate: '2.4%',
+    points: 'Q - 헤드샷: 피해량 10% 증가',
+  },
+  {
+    id: 33,
+    title: '트리스타나 (원딜)',
+    description: '14.17 패치 승률 49.9%, 픽률 9.6%, 밴률 3.2%',
+    imageUrl: 'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Tristana_0.jpg',
+    winRate: '49.9%',
+    pickRate: '9.6%',
+    banRate: '3.2%',
+    points: 'R - 폭발! : 피해량 20% 증가',
+  },
+
+  // 서폿 라인 추가
+  {
+    id: 34,
+    title: '알리스타 (서폿)',
+    description: '14.17 패치 승률 49.3%, 픽률 8.0%, 밴률 2.9%',
+    imageUrl: 'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Alistar_0.jpg',
+    winRate: '49.3%',
+    pickRate: '8.0%',
+    banRate: '2.9%',
+    points: 'Q - 강타: 피해량 15% 증가',
+  },
+  {
+    id: 35,
+    title: '소나 (서폿)',
+    description: '14.17 패치 승률 50.0%, 픽률 7.2%, 밴률 3.5%',
+    imageUrl: 'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Sona_0.jpg',
+    winRate: '50.0%',
+    pickRate: '7.2%',
+    banRate: '3.5%',
+    points: 'E - 노래의 율동: 보호막 효과 10% 증가',
+  },
 ];
 
 export default slidesData;

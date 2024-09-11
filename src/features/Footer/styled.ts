@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 export const EyeStyled = styled.div`
   .footer {
-    background-color: #1e1e2f; 
-    color: #ffffff; 
+    background-color: #1e1e2f;
+    color: #ffffff;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 100%;
   }
 
   .footer-links {
@@ -52,18 +53,19 @@ export const EyeStyled = styled.div`
   }
 
   .eyeContainer {
-    position: relative; 
-    width: 225px; 
-    height: 225px; 
+    position: relative;
+    width: 225px;
+    height: 225px;
+    margin: 0 auto;
   }
 
   .eyeBall {
-    position: absolute; 
-    width: 25px; 
-    height: 25px; 
-    transform-origin: center; 
-    pointer-events: none; 
-    transform: translate(-50%, -50%); 
-    transition: transform 0.2s ease-out; 
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    transform-origin: center;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease-out;
   }
 `;
