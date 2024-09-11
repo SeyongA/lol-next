@@ -130,6 +130,9 @@ app.get('/past5Games', async (req, res) => {
   }
 });
 
+
+
+
 app.get('/userRank', async (req, res) => {
   const ChallengerRankData = async () => {
     try {
@@ -160,7 +163,7 @@ app.get('/userRank', async (req, res) => {
       const masterRank = await axios.get(
         `https://kr.api.riotgames.com/lol/league/v4/masterleagues/by-queue/RANKED_SOLO_5x5?api_key=${api_key}`
       );
-      return masterRank.data.entries; 
+      return masterRank.data.entries;
     } catch (error) {
       console.error(`Error: ${error.message}`);
       return null;
@@ -168,7 +171,6 @@ app.get('/userRank', async (req, res) => {
   };
 
   try {
-   
     const [challengerData, grandmasterData, masterData] = await Promise.all([
       ChallengerRankData(),
       GrandmasterRankData(),
@@ -182,11 +184,22 @@ app.get('/userRank', async (req, res) => {
       ...(masterData || []),
     ];
 
+    // summonerId만 추출한 새로운 배열 생성
+    const summonerIds = rankingData.map(player => player.summonerId);
+
     // 결과 응답
-    res.json({ result: true, data: rankingData });
+    res.json({ 
+      result: true, 
+      data: summonerIds // 소환사 ID들만 응답으로 보냄
+    });
+
+    console.log(summonerIds); // 서버 콘솔에 summonerId만 출력하여 확인
   } catch (error) {
     console.error(`Error: ${error.message}`);
-    res.status(500).json({ result: false, message: '데이터를 가져오는 중 오류가 발생했습니다.' });
+    res.status(500).json({ 
+      result: false, 
+      message: '데이터를 가져오는 중 오류가 발생했습니다.' 
+    });
   }
 });
 
