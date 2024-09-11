@@ -12,7 +12,8 @@ export const HeaderStyled = styled.div`
     align-items: center;
     justify-content: space-between;  // 로고, 박스, 로그인 버튼을 균등하게 분배
     padding: 10px;
-    height: 64px; 
+    height: 64px;
+    width: 100%;
     .navLogo {
       width: 20%;
       display: flex;

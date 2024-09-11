@@ -5,6 +5,10 @@ export const ChampionSliderStyled = styled.div`
     margin-top: 80px;
     z-index: 1;
   }
+  
+  .swiper .swiper-initialized .swiper-horizontal .swiper-backface-hidden{
+    overflow: hidden;
+  }
 
   .swiper-scrollbar {
     display: none; /* 스크롤바 자체를 숨김 */
@@ -13,7 +17,6 @@ export const ChampionSliderStyled = styled.div`
   /* 기본 슬라이드 박스 스타일 (비활성화된 슬라이드는 투명 배경) */
   .swiper-slide {
     background-color: transparent;
-    /* border-radius: 10px; */
     padding: 10px;
     display: flex;
     align-items: center;
@@ -26,7 +29,6 @@ export const ChampionSliderStyled = styled.div`
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     z-index: 1;
-    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); */
   }
 
   /* 슬라이드 안의 내용 정렬 */
@@ -43,6 +45,7 @@ export const ChampionSliderStyled = styled.div`
     background-color: #2c3255; /* 활성화된 슬라이드에서만 배경색 */
     transform: scale(1.05);
     z-index: 2;
+    border-radius: 10px;
   }
 
   /* 이미지 스타일 - 비활성화된 슬라이드의 이미지를 크게 */
@@ -128,5 +131,55 @@ export const ChampionSliderStyled = styled.div`
 
   .swiper-slide-next {
     transform: translateX(10%); /* 다음 슬라이드를 오른쪽으로 이동 */
+  }
+
+  /* 반응형 디자인: 태블릿 */
+  @media (max-width: 1024px) {
+    .swiper-slide {
+      width: 600px;
+      height: 250px;
+    }
+
+    .swiper-slide .slide-image {
+      width: 150px;
+      height: 250px;
+    }
+
+    .swiper-slide-active .slide-image {
+      width: 120px;
+      height: 200px;
+    }
+  }
+
+  /* 반응형 디자인: 스마트폰 */
+  @media (max-width: 768px) {
+    .swiper-slide {
+      width: 100%;
+      height: auto;
+      padding: 5px;
+    }
+
+    .swiper-slide .slide-image {
+      width: 120px;
+      height: auto;
+    }
+
+    .swiper-slide-active .slide-image {
+      width: 100px;
+      height: auto;
+    }
+
+    .info-section {
+      padding-left: 10px;
+    }
+
+    .info-section h2 {
+      font-size: 16px;
+    }
+
+    .info-section .stats p,
+    .info-section .points p {
+      font-size: 12px;
+    }
   }
 `;
