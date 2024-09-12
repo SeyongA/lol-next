@@ -21,7 +21,7 @@ const Search = () => {
   return (
     <>
       <SearchStyled>
-        <div className={` ${path === '/' ? 'inputDiv' : 'smallDiv'}`}>
+        <div className={` ${path === '/' ? 'inputDiv' : path === '/404' ? 'b404': 'smallDiv'}`}>
           <form
             onSubmit={(e: any) => {
               e.preventDefault();

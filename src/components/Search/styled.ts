@@ -1,6 +1,35 @@
 import styled from 'styled-components';
 
 export const SearchStyled = styled.div`
+  .b404 {
+      width: 100%;
+      max-width: 800px;
+      height: 80px;
+      margin: 0 auto;
+      margin-top: 120px;
+      padding: 0 20px;
+      position: absolute;
+      top: 220px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      input {
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 600px;
+        height: 50px;
+        border-radius: 30px;
+        padding-left: 30px;
+        font-size: 15px;
+      }
+
+      button {
+        display: none;
+      }
+
+  }
+
   .inputDiv {
     width: 100%;
     max-width: 800px;

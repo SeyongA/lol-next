@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import rankBack from "../../assets/image/2222.jpg";
+import Footer from '@/features/Footer';
 
 interface Summoner {
   summonerId: string;
@@ -129,6 +130,7 @@ const RankPage = () => {
             <button onClick={goToLastPage} style={paginationButtonStyle}>{'>>'}</button>
           </div>
         </div>
+        <Footer/>
       </div>
     </>
   );
