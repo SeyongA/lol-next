@@ -5,6 +5,7 @@ export const RankListContainer = styled.div`
   z-index: 9999;
   width: 100vw;
   margin: 100px auto;
+  height: 100%;
 `;
 
 export const Table = styled.table`
