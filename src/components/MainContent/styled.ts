@@ -67,7 +67,7 @@ export const ChampionSliderStyled = styled.div`
 
   /* 기본적으로 텍스트를 숨김 */
   .info-section {
-    display: none; /* 기본적으로 텍스트는 숨김 */
+    display: none; /* 비활성화된 슬라이드의 기본 상태로 텍스트 숨김 */
     padding-left: 20px;
     color: white;
     flex: 1;
@@ -119,7 +119,7 @@ export const ChampionSliderStyled = styled.div`
   }
 
   .swiper-slide-active {
-    background-color: #2c3255;
+    background-color: #505E6F;
     transform: translateX(0); /* 활성화된 슬라이드를 중앙에 위치 */
     z-index: 2;
     scale: 1.05;
