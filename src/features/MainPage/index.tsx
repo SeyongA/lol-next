@@ -1,7 +1,9 @@
+
 import React, { useState, useEffect } from "react";
-import Main from "@/components/Main";
-import Search from "@/components/Search";
-import Footer from "../Footer";
+import Main from '@/components/Main';
+import Search from '@/components/Search';
+import Footer from '../Footer';
+
 import styled from 'styled-components';
 import Image from 'next/image';
 import fist from "../../assets/image/fists.gif";
@@ -31,6 +33,7 @@ const GifImage = styled.div`
   width: 50%;
 `;
 
+
 const MainPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,6 +44,7 @@ const ContentWrapper = styled.div`
   flex: 1;
   padding-bottom: 40px;
 `;
+
 
 const MainPage = () => {
   const [showGif, setShowGif] = useState(true);
@@ -67,8 +71,7 @@ const MainPage = () => {
     return () => document.removeEventListener('click', handleUserInteraction);
   }, []);
 
-  return (
-    <MainPageWrapper>
+  return ( <MainPageWrapper>
       <GifOverlay visible={showGif}>
         <GifImage>
           <Image src={fist} alt="Loading" layout="intrinsic" />
@@ -82,6 +85,7 @@ const MainPage = () => {
       </ContentWrapper>
       <Footer />
     </MainPageWrapper>
+
   );
 };
 
