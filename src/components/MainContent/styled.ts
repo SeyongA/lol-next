@@ -13,7 +13,6 @@ export const ChampionSliderStyled = styled.div`
   /* 기본 슬라이드 박스 스타일 (비활성화된 슬라이드는 투명 배경) */
   .swiper-slide {
     background-color: transparent;
-    /* border-radius: 10px; */
     padding: 10px;
     display: flex;
     align-items: center;
@@ -26,7 +25,6 @@ export const ChampionSliderStyled = styled.div`
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     z-index: 1;
-    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); */
   }
 
   /* 슬라이드 안의 내용 정렬 */
@@ -64,7 +62,7 @@ export const ChampionSliderStyled = styled.div`
 
   /* 기본적으로 텍스트를 숨김 */
   .info-section {
-    display: none; /* 기본적으로 텍스트는 숨김 */
+    display: none; /* 비활성화된 슬라이드의 기본 상태로 텍스트 숨김 */
     padding-left: 20px;
     color: white;
     flex: 1;
@@ -116,7 +114,7 @@ export const ChampionSliderStyled = styled.div`
   }
 
   .swiper-slide-active {
-    background-color: #2c3255;
+    background-color: #505E6F;
     transform: translateX(0); /* 활성화된 슬라이드를 중앙에 위치 */
     z-index: 2;
     scale: 1.05;
