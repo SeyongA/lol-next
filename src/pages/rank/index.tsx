@@ -3,6 +3,7 @@ import Image from 'next/image';
 import rankBack from '../../assets/image/2222.jpg';
 import axios from 'axios';
 
+
 interface Summoner {
   summonerId: string;
   summonerName: string;
@@ -190,6 +191,7 @@ const RankPage = () => {
           </div>
         </div>
       </div> */}
+
     </>
   );
 };
